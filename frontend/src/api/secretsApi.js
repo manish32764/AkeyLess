@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
 
 const client = axios.create({ baseURL: BASE_URL });
 
@@ -30,5 +30,14 @@ export async function getSecret(name) {
  */
 export async function listSecrets(path = '/') {
   const { data } = await client.get('/secrets/list', { params: { path } });
+  return data;
+}
+
+/**
+ * List all secrets under a path prefix and return their name+value pairs.
+ * @param {string} [path='/'] - Path prefix
+ */
+export async function getAllSecretValues(path = '/') {
+  const { data } = await client.get('/secrets/all-values', { params: { path } });
   return data;
 }

@@ -164,3 +164,132 @@ body {
   padding: 1.5rem 0;
   font-size: 0.9rem;
 }
+
+/* ---- Multi-row KV Save ---- */
+.kv-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2rem;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kv-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.kv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2rem;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.kv-row input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #e2e8f0;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.kv-row input:focus { border-color: #0ea5e9; }
+
+.btn-remove {
+  background: transparent;
+  border: 1px solid #7f1d1d;
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.15s;
+}
+.btn-remove:hover:not(:disabled) { background: #7f1d1d; }
+.btn-remove:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ---- Form Actions Row ---- */
+.form-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #0ea5e9;
+  border: 1px solid #0ea5e9;
+  border-radius: 7px;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-secondary:hover:not(:disabled) { background: #0c2a3a; }
+.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---- Save Results ---- */
+.save-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+/* ---- Values Table ---- */
+.values-table-wrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.values-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.values-table th {
+  background: #1e3a5f;
+  color: #bae6fd;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.values-table td {
+  padding: 0.55rem 0.9rem;
+  border-top: 1px solid #1e293b;
+  vertical-align: top;
+}
+
+.values-table tr:nth-child(even) td { background: #0f1e30; }
+
+.values-table .secret-name {
+  font-family: 'Courier New', monospace;
+  color: #7dd3fc;
+  white-space: nowrap;
+  width: 45%;
+}
+
+.values-table .secret-val {
+  font-family: 'Courier New', monospace;
+  color: #86efac;
+  word-break: break-all;
+}

@@ -59,9 +59,18 @@ public class SecretsController {
      * GET /api/secrets/list?path=/my-app
      */
     @GetMapping("/list")
-    public ResponseEntity<Map<String, Object>> listSecrets(
-            @RequestParam(defaultValue = "/") String path) {
-        List<String> secrets = akeylessService.listSecrets(path);
+    public ResponseEntity<Map<String, Object>> listSecrets() {
+        List<String> secrets = akeylessService.listSecrets();
         return ResponseEntity.ok(Map.of("secrets", secrets, "count", secrets.size()));
+    }
+
+    /**
+     * List all secrets under /manishpoc and return their values.
+     * GET /api/secrets/all-values
+     */
+    @GetMapping("/all-values")
+    public ResponseEntity<Map<String, Object>> getAllValues() {
+        Map<String, String> values = akeylessService.getAllValues();
+        return ResponseEntity.ok(Map.of("values", values, "count", values.size()));
     }
 }

@@ -9,6 +9,7 @@ target/
 # ---- Spring Boot ----
 *.log
 logs/
+backend/src/main/resources/application.properties
 
 # ---- Node / React ----
 node_modules/
