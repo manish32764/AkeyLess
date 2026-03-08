@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: akeyless-backend
+    ports:
+      - "8081:8081"
+    environment:
+      AKEYLESS_ACCESS_ID:  ${AKEYLESS_ACCESS_ID}
+      AKEYLESS_ACCESS_KEY: ${AKEYLESS_ACCESS_KEY}
+      AKEYLESS_API_URL:    ${AKEYLESS_API_URL:-https://api.akeyless.io}
+      CORS_ALLOWED_ORIGINS: http://localhost:5173
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8081/api/secrets/list || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api
+    container_name: akeyless-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
